@@ -61,8 +61,6 @@ function createNotes(): NoteStore {
 		updateNote: (rowIndex, index, note) => {
 			update((state) => {
 				state.notes[rowIndex][index].note = note;
-				console.log(state);
-
 				return state;
 			});
 		},
