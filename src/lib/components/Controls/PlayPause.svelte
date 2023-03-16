@@ -4,22 +4,28 @@
 
 	import PlayIcon from '$lib/icons/play.svg?component';
 	import PauseIcon from '$lib/icons/pause.svg?component';
+	import { onblur } from '$lib/actions/onblur';
 
 	let isPlaying = false;
+	function stopSampler() {
+		Tone.Transport.stop();
+		$sampler.stop();
+		isPlaying = false;
+	}
+
+	async function startSampler() {
+		await Tone.start();
+		Tone.Transport.start();
+		$sampler.start();
+		isPlaying = true;
+	}
+
 	async function playpause() {
-		if (!isPlaying) {
-			await Tone.start();
-			Tone.Transport.start();
-			$sampler.start();
-		} else {
-			Tone.Transport.stop();
-			$sampler.stop();
-		}
-		isPlaying = !isPlaying;
+		!isPlaying ? await startSampler() : stopSampler();
 	}
 </script>
 
-<button on:click={playpause}>
+<button on:click={playpause} use:onblur={stopSampler}>
 	{#if isPlaying}
 		<PauseIcon />
 	{:else}
@@ -36,5 +42,7 @@
 		align-items: center;
 		border: none;
 		background-color: var(--primary);
+		width: 3rem;
+		height: 3rem;
 	}
 </style>

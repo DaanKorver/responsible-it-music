@@ -8,7 +8,8 @@
 
 	let hasNote = false;
 	function onClick() {
-		audio.updateNote(rowIndex, index, !hasNote ? 'A1' : '');
+		const note = `A${rowIndex + 1}`;
+		audio.updateNote(rowIndex, index, !hasNote ? note : '');
 		hasNote = !hasNote;
 	}
 </script>
