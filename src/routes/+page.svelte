@@ -1,7 +1,9 @@
 <script lang="ts">
+	import FeedbackButton from '$lib/components/Feedback/FeedbackButton.svelte';
 	import Sampler from '$lib/components/Sampler/Sampler.svelte';
 </script>
 
+<FeedbackButton />
 <div>
 	<Sampler />
 </div>
