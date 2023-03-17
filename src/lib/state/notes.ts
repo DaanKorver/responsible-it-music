@@ -4,7 +4,7 @@ interface Note {
 	note: string;
 }
 
-type Row = Array<Note>;
+export type Row = Array<Note>;
 
 export const ROW_AMOUNT = 4;
 export const ROW_BUTTONS = 16;
@@ -24,7 +24,7 @@ const newRow = () => {
 const grid = [];
 for (let i = 0; i < ROW_AMOUNT; i++) {
 	const row = newRow();
-	grid.push([...row]);
+	grid.push(Array.from(row));
 }
 
 const defaultData: IAudio = {
@@ -54,7 +54,8 @@ function createNotes(): NoteStore {
 		},
 		removeRow: (rowIndex) => {
 			update((state) => {
-				state.notes.splice(rowIndex, 1);
+				state.notes = state.notes.filter((_, index) => index !== rowIndex);
+
 				return state;
 			});
 		},
