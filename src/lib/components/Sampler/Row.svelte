@@ -4,19 +4,42 @@
 	import RowButton from './RowButton.svelte';
 
 	import TrashIcon from '$lib/icons/trash.svg?component';
+	import Pitch from '../Controls/Pitch.svelte';
 </script>
 
-<div>
-	{#each $audio.notes[index] as _, noteIndex}
-		<RowButton rowIndex={index} index={noteIndex} />
-	{/each}
+<div class="before">
+	<Pitch rowIndex={index} />
+</div>
+<div class="row-container">
+	<div>
+		{#each $audio.rows[index].notes as _, noteIndex}
+			<RowButton rowIndex={index} index={noteIndex} />
+		{/each}
+	</div>
+</div>
+<div class="after">
 	<button on:click={() => audio.removeRow(index)}><TrashIcon /></button>
 </div>
 
 <style>
-	div {
+	.row-container {
 		display: flex;
-		margin-bottom: 3rem;
+		grid-column: 2/3;
+	}
+
+	.row-container > div {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.before {
+		grid-column: 1/2;
+	}
+
+	.after {
+		grid-column: 3/4;
 	}
 
 	button {

@@ -4,19 +4,22 @@ interface Note {
 	note: string;
 }
 
-export type Row = Array<Note>;
+export type Row = {
+	notes: Note[];
+	pitch: number;
+};
 
 export const ROW_AMOUNT = 4;
 export const ROW_BUTTONS = 16;
 
 interface IAudio {
-	notes: Row[];
+	rows: Row[];
 }
 
 const newRow = () => {
-	const row = [];
+	const row: Row = { notes: [], pitch: 0 };
 	for (let j = 0; j < ROW_BUTTONS; j++) {
-		row.push({ note: '' });
+		row.notes.push({ note: '' });
 	}
 	return row;
 };
@@ -24,11 +27,11 @@ const newRow = () => {
 const grid = [];
 for (let i = 0; i < ROW_AMOUNT; i++) {
 	const row = newRow();
-	grid.push(Array.from(row));
+	grid.push(row);
 }
 
 const defaultData: IAudio = {
-	notes: grid
+	rows: grid
 };
 
 interface NoteStore {
@@ -36,6 +39,7 @@ interface NoteStore {
 	addRow: () => void;
 	removeRow: (rowIndex: number) => void;
 	updateNote: (rowIndex: number, index: number, note: string) => void;
+	updatePitch: (rowIndex: number, pitch: number) => void;
 
 	reset: () => void;
 	set: (this: void, value: IAudio) => void;
@@ -48,20 +52,26 @@ function createNotes(): NoteStore {
 		subscribe,
 		addRow: () => {
 			update((state) => {
-				state.notes = [...state.notes, newRow()];
+				state.rows = [...state.rows, newRow()];
 				return state;
 			});
 		},
 		removeRow: (rowIndex) => {
 			update((state) => {
-				state.notes = state.notes.filter((_, index) => index !== rowIndex);
+				state.rows = state.rows.filter((_, index) => index !== rowIndex);
 
 				return state;
 			});
 		},
 		updateNote: (rowIndex, index, note) => {
 			update((state) => {
-				state.notes[rowIndex][index].note = note;
+				state.rows[rowIndex].notes[index].note = note;
+				return state;
+			});
+		},
+		updatePitch: (rowIndex, pitch) => {
+			update((state) => {
+				state.rows[rowIndex].pitch = pitch;
 				return state;
 			});
 		},

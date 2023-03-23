@@ -4,7 +4,7 @@
 	export let rowIndex: number;
 	export let index: number;
 
-	$: active = $audio.notes[rowIndex][index].note !== '';
+	$: active = $audio.rows[rowIndex].notes[index].note !== '';
 
 	let hasNote = false;
 	function onClick() {
@@ -14,10 +14,10 @@
 	}
 </script>
 
-<button on:click={onClick} class:active>{index + 1}</button>
+<button class="note" on:click={onClick} class:active>{index + 1}</button>
 
 <style>
-	button {
+	.note {
 		width: 3rem;
 		height: 3rem;
 		border: 1px solid transparent;
@@ -28,23 +28,22 @@
 		cursor: pointer;
 		transition: border-color 0.25s, background-color 0.25s;
 		color: #fff;
-		margin-right: 0.5rem;
 		border-radius: 50%;
 	}
 
-	button:hover {
+	.note:hover {
 		border-color: var(--primary);
 	}
-	button:focus,
-	button:focus-visible {
+	.note:focus,
+	.note:focus-visible {
 		outline: 4px auto -webkit-focus-ring-color;
 	}
 
-	button.active {
+	.note.active {
 		background-color: var(--primary);
 	}
 
-	button:nth-child(4n) {
+	.note:nth-child(4n):not(:last-child) {
 		margin-right: var(--bar-gap);
 	}
 </style>

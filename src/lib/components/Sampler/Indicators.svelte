@@ -13,6 +13,8 @@
 	div {
 		display: flex;
 		flex-direction: row;
+		grid-column: 2/3;
+		gap: 0.5rem;
 	}
 
 	span {
@@ -23,10 +25,9 @@
 		border-radius: 50%;
 		transform: scale(0.2);
 		transition: 0.1s transform ease-out;
-		margin-right: 0.5rem;
 	}
 
-	span:nth-child(4n) {
+	span:nth-child(4n):not(:last-child) {
 		margin-right: var(--bar-gap);
 	}
 

@@ -3,6 +3,9 @@
 	import Modal from '$lib/components/Download/Modal.svelte';
 	import Sampler from '$lib/components/Sampler/Sampler.svelte';
 	import Download from '$lib/components/Download/Download.svelte';
+	import { audio } from '$lib/state/notes';
+
+	$: console.log($audio);
 </script>
 
 <!-- <FeedbackButton /> -->

@@ -26,8 +26,8 @@ export async function record() {
 	recorder.start();
 
 	for (let i = 0; i < iterationTimes; i++) {
-		get(audio).notes.forEach((column, columnIndex) => {
-			column.forEach((note, noteIndex) => {
+		get(audio).rows.forEach((column, columnIndex) => {
+			column.notes.forEach((note, noteIndex) => {
 				if (!note.note) return;
 				const timeToUse = (noteIndex + i * 16) * time;
 				if (timeToUse > latestTime) latestTime = timeToUse;

@@ -7,22 +7,33 @@
 	import PlusIcon from '$lib/icons/plus.svg?component';
 </script>
 
-<div>
+<div class="sampler">
 	<ControlRow />
-	<Indicators />
-	{#each $audio.notes as _, index}
-		<Row {index} />
-	{/each}
+	<div>
+		<Indicators />
+		{#each $audio.rows as _, index}
+			<Row {index} />
+		{/each}
+	</div>
 	<button on:click={() => audio.addRow()}><PlusIcon /></button>
 </div>
 
 <style>
-	div {
+	.sampler {
 		display: inline-flex;
 		flex-direction: column;
 		justify-content: center;
 		margin: 0 auto;
 	}
+
+	.sampler > div {
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		row-gap: 2rem;
+		column-gap: 1rem;
+		place-items: center;
+	}
+
 	button {
 		display: block;
 		margin: 0 auto;

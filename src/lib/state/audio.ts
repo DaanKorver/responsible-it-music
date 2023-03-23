@@ -10,6 +10,8 @@ const sequence = new Tone.Sequence(
 	'8n'
 );
 
+export const pitchShifter = new Tone.PitchShift(0).toDestination();
+pitchShifter.windowSize = 0.01;
 export const recorder = new Tone.Recorder();
 export const instrument = new Tone.Sampler({
 	urls: {
@@ -19,25 +21,29 @@ export const instrument = new Tone.Sampler({
 	baseUrl: 'https://tonejs.github.io/audio/casio/'
 })
 	.connect(recorder)
+	.connect(pitchShifter)
 	.toDestination();
 
-export const sampler = derived(audio, ({ notes }) => {
+export const sampler = derived(audio, ({ rows }) => {
 	sequence.set({
-		callback: (time: number, column: number) => onSequenceStep(time, column, notes)
+		callback: (time: number, column: number) => onSequenceStep(time, column, rows)
 	});
 	return sequence;
 });
 
 export const beatIndex = writable(0);
 
-function onSequenceStep(time: number, column: number, notes: Row[]) {
+function onSequenceStep(time: number, column: number, rows: Row[]) {
 	// Setting the beat index
 	beatIndex.set(column);
 
 	// Playing notes
-	notes.forEach((row) => {
-		const note = row[column].note;
+	rows.forEach((row) => {
+		const note = row.notes[column].note;
 		if (!note) return;
+		pitchShifter.pitch = row.pitch;
+		console.log(row.pitch);
+
 		instrument.triggerAttackRelease(note, '8n', time);
 	});
 }
