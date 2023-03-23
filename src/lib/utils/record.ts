@@ -1,11 +1,10 @@
 import { instrument, recorder } from '$lib/state/audio';
 import { audio } from '$lib/state/notes';
+import { isRecording } from '$lib/state/recording';
 import { get } from 'svelte/store';
 import * as Tone from 'tone';
 
 export function record() {
-	//
-
 	const currentTime = Tone.now();
 	const time = Tone.Time('8n').toSeconds();
 
@@ -20,12 +19,8 @@ export function record() {
 		get(audio).notes.forEach((column, columnIndex) => {
 			column.forEach((note, noteIndex) => {
 				if (!note.note) return;
-				console.log(columnIndex);
-
 				const timeToUse = (noteIndex + i * 16) * time;
 				if (timeToUse > latestTime) latestTime = timeToUse;
-
-				console.log(currentTime + timeToUse);
 
 				instrument.triggerAttackRelease(note.note, '8n', currentTime + timeToUse);
 			});
@@ -39,6 +34,7 @@ export function record() {
 		const anchor = document.createElement('a');
 		anchor.download = 'recording.webm';
 		anchor.href = url;
+		isRecording.set(false);
 		anchor.click();
 	}, latestTime * 1000 + 1000);
 }

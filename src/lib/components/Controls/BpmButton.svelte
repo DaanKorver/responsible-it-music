@@ -40,8 +40,8 @@
 	}
 
 	button {
-		height: 100%;
-		aspect-ratio: 1/1;
+		height: 3rem;
+		width: 3rem;
 		border-radius: 50%;
 	}
 
