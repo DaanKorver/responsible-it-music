@@ -20,8 +20,8 @@ export const instrument = new Tone.Sampler({
 	},
 	baseUrl: 'https://tonejs.github.io/audio/casio/'
 })
-	.connect(recorder)
 	.connect(pitchShifter)
+	.connect(recorder)
 	.toDestination();
 
 export const sampler = derived(audio, ({ rows }) => {

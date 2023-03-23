@@ -1,4 +1,4 @@
-import { instrument, recorder } from '$lib/state/audio';
+import { instrument, pitchShifter, recorder } from '$lib/state/audio';
 import { audio } from '$lib/state/notes';
 import { isRecording } from '$lib/state/recording';
 import { get } from 'svelte/store';
@@ -31,7 +31,7 @@ export async function record() {
 				if (!note.note) return;
 				const timeToUse = (noteIndex + i * 16) * time;
 				if (timeToUse > latestTime) latestTime = timeToUse;
-
+				pitchShifter.pitch = column.pitch;
 				instrument.triggerAttackRelease(note.note, '8n', currentTime + timeToUse);
 			});
 		});
