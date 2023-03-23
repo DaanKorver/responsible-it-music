@@ -1,17 +1,18 @@
 <script>
-	import { isRecording } from '$lib/state/recording';
+	import { isRecording, isRecordingModal } from '$lib/state/recording';
 	import { record } from '$lib/utils/record';
 	import Modal from './Modal.svelte';
 
 	function onClick() {
 		isRecording.set(true);
+		isRecordingModal.set(true);
 		record();
 	}
 </script>
 
 <button on:click={onClick}>Download</button>
 
-<Modal isOpen={$isRecording} />
+<Modal isOpen={$isRecordingModal} />
 
 <style>
 	button {

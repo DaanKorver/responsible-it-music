@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { isRecording, isRecordingModal } from '$lib/state/recording';
 	import Spinner from '../Loaders/Spinner.svelte';
+	import WaitingStates from './WaitingStates.svelte';
 
 	export let isOpen: boolean = false;
 </script>
@@ -8,8 +10,14 @@
 	<div class="background">
 		<div class="modal">
 			<h2>Recording loop</h2>
-			<p>Please wait wile we record the loop for you</p>
-			<Spinner />
+			{#if $isRecording}
+				<p>Please wait wile we record the loop for you</p>
+				<WaitingStates />
+				<Spinner />
+			{:else}
+				<p>That beat sounded great!</p>
+				<button on:click={() => isRecordingModal.set(false)}>Lets make some more</button>
+			{/if}
 		</div>
 	</div>
 {/if}
@@ -26,6 +34,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		z-index: 99;
 	}
 
 	.modal {

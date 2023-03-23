@@ -4,11 +4,21 @@ import { isRecording } from '$lib/state/recording';
 import { get } from 'svelte/store';
 import * as Tone from 'tone';
 
-export function record() {
+async function sleep(ms: number) {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve(true);
+		}, ms);
+	});
+}
+
+export async function record() {
 	const currentTime = Tone.now();
 	const time = Tone.Time('8n').toSeconds();
 
 	Tone.Transport.stop();
+
+	await sleep(1000);
 
 	const iterationTimes = 3;
 	let latestTime = 0;
@@ -32,7 +42,7 @@ export function record() {
 
 		const url = URL.createObjectURL(recording);
 		const anchor = document.createElement('a');
-		anchor.download = 'recording.webm';
+		anchor.download = 'recording.mp3';
 		anchor.href = url;
 		isRecording.set(false);
 		anchor.click();

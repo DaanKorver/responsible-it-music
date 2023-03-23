@@ -16,8 +16,8 @@
 	}
 
 	span {
-		width: 4rem;
-		height: 4rem;
+		width: 3rem;
+		height: 3rem;
 		background-color: rgba(255, 255, 255, 0.4);
 		display: block;
 		border-radius: 50%;

@@ -18,11 +18,10 @@
 
 <style>
 	button {
-		width: 4rem;
-		height: 4rem;
+		width: 3rem;
+		height: 3rem;
 		border: 1px solid transparent;
 		font-size: 1em;
-		padding: 1em;
 		font-weight: 500;
 		font-family: inherit;
 		background-color: #333;
