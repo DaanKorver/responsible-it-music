@@ -10,7 +10,16 @@ const sequence = new Tone.Sequence(
 	'8n'
 );
 
-const instrument = new Tone.Synth().toDestination();
+export const recorder = new Tone.Recorder();
+export const instrument = new Tone.Sampler({
+	urls: {
+		A1: 'A1.mp3',
+		A2: 'A2.mp3'
+	},
+	baseUrl: 'https://tonejs.github.io/audio/casio/'
+})
+	.connect(recorder)
+	.toDestination();
 
 export const sampler = derived(audio, ({ notes }) => {
 	sequence.set({
