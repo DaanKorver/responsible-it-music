@@ -9,7 +9,6 @@
 <div>
 	<Sampler />
 </div>
-<Download />
 
 <style>
 	div {
