@@ -9,9 +9,6 @@
 	const MAX_PITCH = 12;
 
 	function setNewPitch(increment = false) {
-		// console.log(pitch - 1 < MIN_PITCH);
-		// console.log(pitch + 1 > MAX_PITCH);
-
 		if (!increment && pitch - 1 < MIN_PITCH) return;
 		if (increment && pitch + 1 > MAX_PITCH) return;
 
