@@ -1,4 +1,4 @@
-// TODO: Feedback form through xlsx or mail
+// TODO: Feedback form through xlsx or other service
 // import type { RequestHandler } from './$types';
 // import nodemailer from 'nodemailer';
 // import { MAIL_SMPT, MAIL_ADDRESS, MAIL_PASSWORD } from '$env/static/private';
