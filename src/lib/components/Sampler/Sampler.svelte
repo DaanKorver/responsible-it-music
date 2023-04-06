@@ -32,6 +32,7 @@
 		row-gap: 2rem;
 		column-gap: 1rem;
 		place-items: center;
+		margin-bottom: 2rem;
 	}
 
 	button {
