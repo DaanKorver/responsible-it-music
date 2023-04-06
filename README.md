@@ -1,38 +1,69 @@
-# create-svelte
+# 🎹 Hitloop - Responsible IT
+![Screenshot from 2023-04-06 22-50-49](https://user-images.githubusercontent.com/30351629/230492364-27a8862c-95ac-4ba4-9283-2c78fcaff6f0.png)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
-## Creating a project
+## 📚 Inhoudsopgave
+- [📝 Beschrijving](#beschrijving)
+- [🏷 Kenmerken](#kenmerken)
+- [🔥 Installatie & Gebruik](#installatie)
+- [📖 Bronnen](#bronnen)
 
-If you're seeing this, you've probably already done this step. Congrats!
+## 📝 Beschrijving
+Hitloop is een project die doormiddel van geluiden (gegeneerd door AI) muziek kan maken. Hitloop is een muziek sampler waarbij de gebruiker zelfs beats kan maken of bestaande kan aanpassen. 
+
+## 🏷 Kenmerken
+- 🔶 HTML
+- 🔷 CSS
+- 🔵 TypeScript
+- 📙 Svelte
+- ♾ Tone.js
+
+
+## 🔥 Installatie & Gebruik
+
+**Clonen van het project**
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
+# clone maken van het project
 
-# create a new project in my-app
-npm create svelte@latest my-app
+# ssh
+git clone git@github.com:DaanKorver/responsible-it-music.git
+
+# https
+git clone https://github.com/DaanKorver/responsible-it-music.git
+```
+**Navigeren naar het project**
+
+```bash
+# Naar de directory waar het project is gecloned
+cd pad/naar/directory
 ```
 
-## Developing
+**Packages installeren**
+```bash
+# install node_modules
+npm install
+```
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Gebruik
 
+**Development server starten**
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
-
-## Building
-
-To create a production version of your app:
-
+**Build maken**
 ```bash
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+**Build preview**
+```bash
+npm run preview
+```
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## 📖 Bronnen
+- [Svelte](https://svelte.dev/)
+- [Sveltekit](https://kit.svelte.dev/)
+- [Tone.js](https://tonejs.github.io/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [ResponsibeIT](https://github.com/responsibleIT/hitloop_project_frontend)
